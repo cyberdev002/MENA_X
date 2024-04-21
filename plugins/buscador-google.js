@@ -18,7 +18,7 @@ conn.sendFile(m.chat, ss, 'error.png', teks, m)
 } 
 handler.help = ['google', 'googlef'].map((v) => v + ' <pencarian>');
 handler.tags = ['internet'];
-handler.command = /^googlef|net?$/i;
+handler.command = /^google|net/i;
 export default handler;
 
 /*import {googleIt} from '@bochilteam/scraper';

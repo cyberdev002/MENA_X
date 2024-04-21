@@ -13,13 +13,13 @@ handler.before = async (m) => {
       await m.reply(data.success);
     } catch {
       /* SI DA ERROR USARA ESTA OTRA OPCION DE API DE IA QUE RECUERDA EL NOMBRE DE LA PERSONA */
-      if (textodem.includes('Hello')) textodem = textodem.replace('hello', 'Hello');
-      if (textodem.includes('hola')) textodem = textodem.replace('hello', 'hello');
-      if (textodem.includes('hello')) textodem = textodem.replace('Hello', 'HELLO');
+      if (textodem.includes('Hola')) textodem = textodem.replace('Hola', 'Hello');
+      if (textodem.includes('hola')) textodem = textodem.replace('hola', 'hello');
+      if (textodem.includes('HOLA')) textodem = textodem.replace('HOLA', 'HELLO');
       const reis = await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=' + textodem);
       const resu = await reis.json();
       const nama = m.pushName || '1';
-      const api = await fetch('http://api.brainshop.ai/get?bid=153868&key=rcKonOgrUFmn5usX&uid=' + name + '&msg=' + resu[0][0][0]);
+      const api = await fetch('http://api.brainshop.ai/get?bid=153868&key=rcKonOgrUFmn5usX&uid=' + nama + '&msg=' + resu[0][0][0]);
       const res = await api.json();
       const reis2 = await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=es&dt=t&q=' + res.cnt);
       const resu2 = await reis2.json();

@@ -5,7 +5,7 @@ import fs from 'fs';
 import axios from 'axios';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
- if (!text) throw `_*< DESCARGAS - SPOTIFY />*_\n\n*[ ℹ️ ] Hace falta el título de la canción de Spotify.*\n\n*[ 💡 ] Ejemplo:* _${usedPrefix + command} Good Feeling - Flo Rida_`;
+ if (!text) throw `_*< SPOTIFY - DOWNLOADER />*_\n\n*[ ℹ️ ] Give me spotify song name.*\n\n*[ 💡 ] Example:* _${usedPrefix + command} Freeky mobbing legandry_`;
   try {
     const res = await fetch(global.API('ApiEmpire', '/api/spotifysearch?text=' + text))
     const data = await res.json()
@@ -16,12 +16,14 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const info = await infos.json()
     const spty = info.spty.resultado
     const img = await (await fetch(`${spty.thumbnail}`)).buffer()  
-    let spotifyi = ` _*< DESCARGAS - SPOTIFY />*_\n\n`
-        spotifyi += ` ▢ *Título:* ${spty.title}\n\n`
-        spotifyi += ` ▢ *Artista:* ${spty.artist}\n\n`
-        spotifyi += ` ▢ *Álbum:* ${spty.album}\n\n`                 
-        spotifyi += ` ▢ *Publicado:* ${spty.year}\n\n`   
-        spotifyi += `*[ ℹ️ ] Se está enviando el audio. espere...*`
+    let spotifyi = ` _*< SPOTIFY - DOWNLOADER />*_\n\n`
+        spotifyi += ` ▢ *Title:* ${spty.title}\n\n`
+        spotifyi += ` ▢ *Artist:* ${spty.artist}\n\n`
+        spotifyi += ` ▢ *Album:* ${spty.album}\n\n`                 
+        spotifyi += ` ▢ *Relese_date:* ${spty.year}\n\n`   
+        spotifyi += `*[ ℹ️ ] Uploading your audio shortly.* \n\n`
+        spotifyi += `*─────ꜱɪᴍᴘʟᴇ ɪꜱ ʙᴇᴀᴜᴛʏ 🌙─────*`
+        
     await conn.sendMessage(m.chat, {text: spotifyi.trim(), contextInfo: {forwardingScore: 9999999, isForwarded: true, "externalAdReply": {"showAdAttribution": true, "containsAutoReply": true, "renderLargerThumbnail": true, "title": global.titulowm2, "containsAutoReply": true, "mediaType": 1, "thumbnail": img, "thumbnailUrl": img, "mediaUrl": linkDL, "sourceUrl": linkDL}}}, {quoted: m});
     await conn.sendMessage(m.chat, {audio: music.data, fileName: `${spty.name}.mp3`, mimetype: 'audio/mpeg'}, {quoted: m});
   } catch (error) {
@@ -29,7 +31,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     throw '_*< DESCARGAS - SPOTIFY />*_\n\n[ ℹ️ ] Ocurrió un error. Por favor, inténtalo de nuevo más tarde.*';
   }
 };
-handler.command = /^(spotify|music)$/i;
+handler.command = /^(spotify|music|song)$/i;
 export default handler;
 
 //***Código antiguo/obsoleto.
