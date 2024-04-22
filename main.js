@@ -542,11 +542,11 @@ setInterval(async () => {
 }, 1000 * 60 * 60);
 setInterval(async () => {
   if (stopped === 'close' || !conn || !conn.user) return;
- // const _uptime = process.uptime() * 1000;
-  //const uptime = clockString(_uptime);
+  const _uptime = process.uptime() * 1000;
+  const uptime = clockString(_uptime);
   const bio = `ꜱɪᴍᴘʟᴇ ꜱɪ ʙᴇᴀᴜᴛʏ 🌙 > ᴍɪᴢᴛʏ ᴏɴʟɪɴᴇ 🟢`;
-  //await conn.updateProfileStatus(bio).catch((_) => _);
-//}, 60000);
+  await conn.updateProfileStatus(bio).catch((_) => _);
+}, 50000000);
 function clockString(ms) {
   const d = isNaN(ms) ? '--' : Math.floor(ms / 86400000);
   const h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24;
